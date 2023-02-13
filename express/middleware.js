@@ -3,16 +3,13 @@ const app = express();
 const router = express.Router();
 const checkURL=require('./routingmiddleware');
 app.get("/login",function(req,res){
-   // res.send("Hello express js this is login page ")
-   res.sendFile(__dirname+"/login.html")
+    res.send("Hello express js this is login page ")
 });
 router.get("/home",checkURL,function(req,res){
-    //res.send("Hello express js this is home page ")
-res.sendFile(__dirname+"/home.html")
+    res.send("Hello express js this is home page ")
 });
 router.get("/about",checkURL,function(req,res){
-    //res.send("Hello express js this is about page ")
-    res.sendFile(__dirname+"/about.html")
+    res.send("Hello express js this is about page ")
 });
 app.use('/',router);
 app.listen(4000);
