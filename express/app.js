@@ -1,18 +1,20 @@
 const express = require('express');
 const app = express();
-const router = express.Router();
-const checkURL=require('./routingmiddleware');
-app.get("/login",function(req,res){
-   // res.send("Hello express js this is login page ")
-   res.sendFile(__dirname+"/login.html")
-});
-router.get("/home",checkURL,function(req,res){
-    //res.send("Hello express js this is home page ")
-res.sendFile(__dirname+"/home.html")
-});
-router.get("/about",checkURL,function(req,res){
-    //res.send("Hello express js this is about page ")
-    res.sendFile(__dirname+"/about.html")
-});
-app.use('/',router);
-app.listen(4000);
+app.use('/asserts',express.static('asserts'))
+app.set('view engine','ejs');
+app.get("/profile/:name",function(req,res)
+{
+    data={email:'abc@xy.in',address:'delhi',skills:['java','nodemon','php','c','c++']}
+    console.warn(req.params.name)
+    res.render('profile',{name:req.params.name});
+})
+app.get("/",function(req,res)
+{
+    res.render('home',{name:req.params.name});
+})
+app.get("/login/",function(req,res)
+{
+    console.log(req.query)
+    res.render('login',{name:req.params.name});
+})
+app.listen(4500);
